@@ -7,8 +7,8 @@ const relatosPorAvistamentoId = {}
 
 app.post("/eventos", (req, res) =>{
     const evento = req.body
-    console.log(evento)
-    return res.status(201).json({ msg: "ok" })
+    console.log(evento.tipo)
+    return res.status(200).json({ msg: "ok" })
 })
 
 app.put('/avistamentos/:id/relatos', (req, res) => {

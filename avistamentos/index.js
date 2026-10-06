@@ -1,3 +1,4 @@
+const axios = require('axios')
 const express = require('express')
 const app = express()
 app.use(express.json())
@@ -7,8 +8,8 @@ let contador = 0
 
 app.post("/eventos", (req, res) =>{
     const evento = req.body
-    console.log(evento)
-    return res.status(201).json({ msg: "ok" })
+    console.log(evento.tipo)
+    return res.status(200).json({ msg: "ok" })
 })
 
 app.get("/avistamentos", function(req,res){
