@@ -10,8 +10,11 @@ app.post("/eventos", (req, res) =>{
     .catch((erro) => console.log(`Erro na porta 4000: ${erro}`))
     axios.post('http://localhost:4100/eventos', evento)
     .catch((erro) => console.log(`Erro na porta 4100: ${erro}`))
+    axios.post('http://localhost:4200/eventos', evento)
+    .catch((erro) => console.log(`Erro na porta 4200: ${erro}`))
+    
     return res.status(200).json({ msg: "ok" })
 })
 
 const port = 10000
-app.listen(port, () => console.log(`Barramento. ${port}`))
+app.listen(port, () => console.log(`Barramento. Porta ${port}`))
