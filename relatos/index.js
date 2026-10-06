@@ -5,6 +5,12 @@ app.use(express.json())
 
 const relatosPorAvistamentoId = {}
 
+app.post("/eventos", (req, res) =>{
+    const evento = req.body
+    console.log(evento)
+    return res.status(201).json({ msg: "ok" })
+})
+
 app.put('/avistamentos/:id/relatos', (req, res) => {
     const idRelato = uuidv4()
     const { texto } = req.body

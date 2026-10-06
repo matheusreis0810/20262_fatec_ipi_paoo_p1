@@ -5,6 +5,12 @@ app.use(express.json())
 const avistamentos = {}
 let contador = 0
 
+app.post("/eventos", (req, res) =>{
+    const evento = req.body
+    console.log(evento)
+    return res.status(201).json({ msg: "ok" })
+})
+
 app.get("/avistamentos", function(req,res){
     res.json(avistamentos)
 })
