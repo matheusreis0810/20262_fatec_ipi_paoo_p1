@@ -16,7 +16,7 @@ app.get("/avistamentos", function(req,res){
     res.json(avistamentos)
 })
 
-app.put("/avistamentos", (req, res) => {
+app.put("/avistamentos", async(req, res) => {
     const local = req.body.local
     const descricao = req.body.descricao
 
@@ -31,8 +31,12 @@ app.put("/avistamentos", (req, res) => {
         local: local,
         descricao: descricao
     }
-    
+
     avistamentos[id] = avistamento
+    await axios.post('http://localhost:10000/eventos', {
+        tipo: 'AvistamentoCriado',
+        dados: avistamento
+    })
     return res.status(201).json({ id, local, descricao })
 })
 
