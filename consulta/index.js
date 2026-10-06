@@ -13,10 +13,23 @@ const funcoes = {
         const relatos = baseConsulta[relato.avistamentoId]['relatos'] || []
         relatos.push(relato)
         baseConsulta[relato.avistamentoId]['relatos'] = relatos
+    },
+    RelatoConfirmado: (relato) => {
+        const relatos = baseConsulta[relato.avistamentoId]['relatos']
+        const relatoParaAtualizar = relatos.find(r => r.id === relato.id)
+        relatoParaAtualizar.confirmacoes = relato.confirmacoes
     }
 }
 app.get("/avistamentos", (req, res) => {
     res.json(baseConsulta)
+})
+
+app.get("/avistamentos/:id", (req, res) => {
+    const avistamento = baseConsulta[req.params.id]
+    if(!avistamento){
+        return res.status(404).json({ erro: "avistamento não encontrado" })
+    }
+    res.json(avistamento)
 })
 
 app.post("/eventos", (req, res) => {
